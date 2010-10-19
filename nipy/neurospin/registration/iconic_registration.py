@@ -161,10 +161,11 @@ class IconicRegistration(object):
 
     def eval(self, T):
         if isinstance(T, GridTransform): 
+            #get displacements
             # TODO: make sure T.shape matches self._source_image.shape
             affine = 0 
             Tv = apply_affine(self._target_fromworld, T[self._slices])
-        else:
+        else:#affine transformation
             affine = 1
             Tv = np.dot(self._target_fromworld, np.dot(T, self._source_toworld)) 
         seed = self._interp
